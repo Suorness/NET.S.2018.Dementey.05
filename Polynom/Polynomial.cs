@@ -13,16 +13,29 @@
         private const double DefaultAccuracy = 0.001D;
 
         private char designationVariablePolynomial;
+        private double[] coefficients;
+
         #endregion private fields
 
         #region public 
         public Polynomial(double[] coefficients)
         {
-            Coefficients = coefficients ?? throw new ArgumentNullException(nameof(coefficients));
+            this.coefficients = coefficients ?? throw new ArgumentNullException(nameof(coefficients));
             DesignationVariablePolynomial = DefaultChar;
         }
 
-        public double[] Coefficients { get; private set; }
+        public double[] Coefficients
+        {
+            get
+            {
+                return (double[])coefficients.Clone();
+            }
+
+            private set
+            {
+                coefficients = value;
+            }
+        }
 
         public char DesignationVariablePolynomial
         {
@@ -72,7 +85,7 @@
                 resultPolynom[i] = firstCoefficients[i] + secondCoefficients[i];
             }
 
-            return new Polynomial(resultPolynom);
+            return new Polynomial(RemoveZeroes(resultPolynom));
         }
 
         /// <summary>
@@ -118,7 +131,7 @@
                 resultPolynom[i] = firstCoefficients[i] - secondCoefficients[i];
             }
 
-            return new Polynomial(resultPolynom);
+            return new Polynomial(RemoveZeroes(resultPolynom));
         }
 
         /// <summary>
@@ -162,7 +175,7 @@
                 }
             }
 
-            return new Polynomial(resultPolynom);
+            return new Polynomial(RemoveZeroes(resultPolynom));
         }
 
         /// <summary>
@@ -174,6 +187,16 @@
         public static Polynomial operator *(Polynomial firstPolynom, Polynomial secondPolynom)
         {
             return Multiply(firstPolynom, secondPolynom);
+        }
+
+        public static bool operator ==(Polynomial firstPolynom, Polynomial secondPolynom)
+        {
+            return ComparisonOfPolynomials(firstPolynom, secondPolynom);
+        }
+
+        public static bool operator !=(Polynomial firstPolynom, Polynomial secondPolynom)
+        {
+            return !ComparisonOfPolynomials(firstPolynom, secondPolynom);
         }
 
         public override int GetHashCode() => ToString().GetHashCode();
@@ -209,11 +232,14 @@
             bool result = false;
             if (obj is Polynomial polynom)
             {
-                result = Coefficients.Length == polynom.Coefficients.Length;
+                var firstCoefficients = RemoveZeroes(Coefficients);
+                var secondCoefficients = RemoveZeroes(polynom.Coefficients);
+
+                result = firstCoefficients.Length == secondCoefficients.Length;
                 int i = 0;
-                while (result && i < Coefficients.Length)
+                while (result && i < firstCoefficients.Length)
                 {
-                    result = Math.Abs(Coefficients[i] - polynom.Coefficients[i]) < DefaultAccuracy;
+                    result = Math.Abs(firstCoefficients[i] - secondCoefficients[i]) < DefaultAccuracy;
                     i++;
                 }
             }
@@ -221,28 +247,46 @@
             return result;
         }
 
-        public static bool operator == (Polynomial firstPolynom, Polynomial secondPolynom)
-        {
-            return ComparisonOfPolynomials(firstPolynom, secondPolynom);
-        }
-
-        public static bool operator !=(Polynomial firstPolynom, Polynomial secondPolynom)
-        {
-            return !ComparisonOfPolynomials(firstPolynom, secondPolynom);
-        }
         #endregion public
 
         #region private method
         private static bool ComparisonOfPolynomials(Polynomial firstPolynom, Polynomial secondPolynom)
         {
             bool result = firstPolynom is null && secondPolynom is null;
-            
+
             if (!result)
             {
                 result = (firstPolynom is null) ? secondPolynom.Equals(firstPolynom) : firstPolynom.Equals(secondPolynom);
             }
 
             return result;
+        }
+
+        private static double[] RemoveZeroes(double[] coefficients)
+        {
+            if (coefficients == null)
+            {
+                throw new ArgumentNullException(nameof(coefficients));
+            }
+
+            if (coefficients.Length == 0)
+            {
+                return new double[] { };
+            }
+
+            int newBorder = coefficients.Length - 1;
+            while ((newBorder >= 0) && (coefficients[newBorder] == 0.0))
+            {
+                newBorder--;
+            }
+
+            int newLength = newBorder + 1;
+
+            double[] newCoefficients = new double[newLength];
+
+            Array.Copy(coefficients, 0, newCoefficients, 0, newLength);
+
+            return newCoefficients;
         }
         #endregion private method
     }

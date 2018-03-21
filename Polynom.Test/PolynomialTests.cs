@@ -38,7 +38,7 @@
 
         [TestCase(new double[] { 1 }, new double[] { 1 }, ExpectedResult = new double[] { 2 })]
         [TestCase(new double[] { 0 }, new double[] { 1 }, ExpectedResult = new double[] { 1 })]
-        [TestCase(new double[] { 0 }, new double[] { 0 }, ExpectedResult = new double[] { 0 })]
+        [TestCase(new double[] { 0 }, new double[] { 0 }, ExpectedResult = new double[] { })]
         [TestCase(new double[] { 1 }, new double[] { 0 }, ExpectedResult = new double[] { 1 })]
         [TestCase(new double[] { 1, 2 }, new double[] { 1 }, ExpectedResult = new double[] { 2, 2 })]
         [TestCase(new double[] { 1, 2, 0, 0, 0, 8 }, new double[] { 1 }, ExpectedResult = new double[] { 2, 2, 0, 0, 0, 8 })]
@@ -55,7 +55,7 @@
 
         [TestCase(new double[] { 1 }, new double[] { 1 }, ExpectedResult = new double[] { 2 })]
         [TestCase(new double[] { 0 }, new double[] { 1 }, ExpectedResult = new double[] { 1 })]
-        [TestCase(new double[] { 0 }, new double[] { 0 }, ExpectedResult = new double[] { 0 })]
+        [TestCase(new double[] { 0 }, new double[] { 0 }, ExpectedResult = new double[] { })]
         [TestCase(new double[] { 1 }, new double[] { 0 }, ExpectedResult = new double[] { 1 })]
         [TestCase(new double[] { 1, 2 }, new double[] { 1 }, ExpectedResult = new double[] { 2, 2 })]
         [TestCase(new double[] { 1, 2, 0, 0, 0, 8 }, new double[] { 1 }, ExpectedResult = new double[] { 2, 2, 0, 0, 0, 8 })]
@@ -70,10 +70,10 @@
             return result.Coefficients;
         }
 
-        [TestCase(new double[] { 1 }, new double[] { 1 }, ExpectedResult = new double[] { 0 })]
+        [TestCase(new double[] { 1 }, new double[] { 1 }, ExpectedResult = new double[] { })]
         [TestCase(new double[] { 2, 1 }, new double[] { 1 }, ExpectedResult = new double[] { 1, 1 })]
-        [TestCase(new double[] { 0 }, new double[] { 0 }, ExpectedResult = new double[] { 0 })]
-        [TestCase(new double[] { 1, 2, 0, 0, 0, 8 }, new double[] { 0, 0, 0, 0, 0, 8 }, ExpectedResult = new double[] { 1, 2, 0, 0, 0, 0 })]
+        [TestCase(new double[] { 0 }, new double[] { 0 }, ExpectedResult = new double[] { })]
+        [TestCase(new double[] { 1, 2, 0, 0, 0, 8 }, new double[] { 0, 0, 0, 0, 0, 8 }, ExpectedResult = new double[] { 1, 2 })]
         [TestCase(new double[] { 1, 2, 0, 0, 0, 8 }, new double[] { 0, 0, 0, 0, 0, 0 }, ExpectedResult = new double[] { 1, 2, 0, 0, 0, 8 })]
         public double[] Subtract(double[] firstCoefficients, double[] secondCoefficients)
         {
@@ -85,12 +85,11 @@
             return result.Coefficients;
         }
 
-        [TestCase(new double[] { 1 }, new double[] { 1 }, ExpectedResult = new double[] { 0 })]
+        [TestCase(new double[] { 1 }, new double[] { 1 }, ExpectedResult = new double[] { })]
         [TestCase(new double[] { 2, 1 }, new double[] { 1 }, ExpectedResult = new double[] { 1, 1 })]
-        [TestCase(new double[] { 0 }, new double[] { 0 }, ExpectedResult = new double[] { 0 })]
-        [TestCase(new double[] { 1, 2, 0, 0, 0, 8 }, new double[] { 0, 0, 0, 0, 0, 8 }, ExpectedResult = new double[] { 1, 2, 0, 0, 0, 0 })]
+        [TestCase(new double[] { 0 }, new double[] { 0 }, ExpectedResult = new double[] { })]
+        [TestCase(new double[] { 1, 2, 0, 0, 0, 8 }, new double[] { 0, 0, 0, 0, 0, 8 }, ExpectedResult = new double[] { 1, 2 })]
         [TestCase(new double[] { 1, 2, 0, 0, 0, 8 }, new double[] { 0, 0, 0, 0, 0, 0 }, ExpectedResult = new double[] { 1, 2, 0, 0, 0, 8 })]
-        [TestCase(new double[] { 0 }, new double[] { 0 }, ExpectedResult = new double[] { 0 })]
         public double[] OperatorSubtractTest(double[] firstCoefficients, double[] secondCoefficients)
         {
             var firstPolynim = new Polynomial(firstCoefficients);
@@ -102,7 +101,7 @@
         }
 
         [TestCase(new double[] { 1 }, new double[] { 1 }, ExpectedResult = new double[] { 1 })]
-        [TestCase(new double[] { 0 }, new double[] { 1 }, ExpectedResult = new double[] { 0 })]
+        [TestCase(new double[] { 0 }, new double[] { 1 }, ExpectedResult = new double[] { })]
         [TestCase(new double[] { 8 }, new double[] { 8 }, ExpectedResult = new double[] { 64 })]
         [TestCase(new double[] { 8 }, new double[] { 8, 1 }, ExpectedResult = new double[] { 64, 8 })]
         [TestCase(new double[] { 8 }, new double[] { 8, 1, 2 }, ExpectedResult = new double[] { 64, 8, 16 })]
@@ -119,7 +118,7 @@
         }
 
         [TestCase(new double[] { 1 }, new double[] { 1 }, ExpectedResult = new double[] { 1 })]
-        [TestCase(new double[] { 0 }, new double[] { 1 }, ExpectedResult = new double[] { 0 })]
+        [TestCase(new double[] { 0 }, new double[] { 1 }, ExpectedResult = new double[] { })]
         [TestCase(new double[] { 8 }, new double[] { 8 }, ExpectedResult = new double[] { 64 })]
         [TestCase(new double[] { 8 }, new double[] { 8, 1 }, ExpectedResult = new double[] { 64, 8 })]
         [TestCase(new double[] { 8 }, new double[] { 8, 1, 2 }, ExpectedResult = new double[] { 64, 8, 16 })]
@@ -157,8 +156,8 @@
         [TestCase]
         public void EqualsTest_ObjIsNull()
         {
-            var Coefficients = new double[] { 8, 16 };
-            var firstPolynim = new Polynomial(Coefficients);
+            var coefficients = new double[] { 8, 16 };
+            var firstPolynim = new Polynomial(coefficients);
 
             Assert.IsFalse(firstPolynim.Equals(null));
         }
