@@ -110,6 +110,49 @@
             return Subtract(firstPolynom, secondPolynom);
         }
 
+        /// <summary>
+        /// This method multiplies two polynomials.
+        /// </summary>
+        /// <param name="firstPolynom">The first term. <see cref="Polynomial"/></param>
+        /// <param name="secondPolynom">The second term. <see cref="Polynomial"/></param>
+        /// <returns>The result of multiplies of two polynomials in the form of a new object. <see cref="Polynomial"/></returns>
+        public static Polynomial Multiply(Polynomial firstPolynom, Polynomial secondPolynom)
+        {
+            if (firstPolynom == null)
+            {
+                throw new ArgumentNullException(nameof(firstPolynom));
+            }
+
+            if (secondPolynom == null)
+            {
+                throw new ArgumentNullException(nameof(secondPolynom));
+            }
+
+            int lengthResultPolynom = firstPolynom.Coefficients.Length + secondPolynom.Coefficients.Length - 1;
+
+            var resultPolynom = new double[lengthResultPolynom];
+
+            for (int i = 0; i < firstPolynom.Coefficients.Length; i++)
+            {
+                for (int j = 0; j < secondPolynom.Coefficients.Length; j++)
+                {
+                    resultPolynom[i + j] += firstPolynom.Coefficients[i] * secondPolynom.Coefficients[j];
+                }
+            }
+
+            return new Polynomial(resultPolynom);
+        }
+
+        /// <summary>
+        /// This method multiplies two polynomials.
+        /// </summary>
+        /// <param name="firstPolynom">The first term. <see cref="Polynomial"/></param>
+        /// <param name="secondPolynom">The second term. <see cref="Polynomial"/></param>
+        /// <returns>The result of multiplies of two polynomials in the form of a new object. <see cref="Polynomial"/></returns>
+        public static Polynomial operator *(Polynomial firstPolynom, Polynomial secondPolynom)
+        {
+            return Multiply(firstPolynom, secondPolynom);
+        }
         #endregion public method
 
         #region private method
