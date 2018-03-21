@@ -1,22 +1,44 @@
 ﻿namespace Polynom
 {
     using System;
+    using System.Text;
 
     /// <summary>
     /// This class describes a polynomial with certain methods of addition, subtraction and multiplication.
     /// </summary>
     public class Polynomial
     {
-        #region constructor
+        #region private fields
+        private const char DefaultChar = 'x';
+        private const double DefaultAccuracy = 0.001D;
+
+        private char designationVariablePolynomial;
+        #endregion private fields
+
+        #region public 
         public Polynomial(double[] coefficients)
         {
             Coefficients = coefficients ?? throw new ArgumentNullException(nameof(coefficients));
+            DesignationVariablePolynomial = DefaultChar;
         }
-        #endregion constructor
 
         public double[] Coefficients { get; private set; }
 
-        #region public method
+        public char DesignationVariablePolynomial
+        {
+            get
+            {
+                return designationVariablePolynomial;
+            }
+
+            set
+            {
+                if (char.IsLetter(value))
+                {
+                    designationVariablePolynomial = value;
+                }
+            }
+        }
 
         /// <summary>
         /// This method adds two polynomials.
@@ -153,9 +175,75 @@
         {
             return Multiply(firstPolynom, secondPolynom);
         }
-        #endregion public method
+
+        public override int GetHashCode() => ToString().GetHashCode();
+
+        public override string ToString()
+        {
+            var strBilder = new StringBuilder();
+            for (int i = 0; i < Coefficients.Length; i++)
+            {
+                strBilder.Append($"{Coefficients[i]}*{DesignationVariablePolynomial}^{i}");
+
+                if (i + 1 != Coefficients.Length)
+                {
+                    strBilder.Append(" + ");
+                }
+            }
+
+            return strBilder.ToString();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (ReferenceEquals(obj, null))
+            {
+                return false;
+            }
+
+            bool result = false;
+            if (obj is Polynomial polynom)
+            {
+                result = Coefficients.Length == polynom.Coefficients.Length;
+                int i = 0;
+                while (result && i < Coefficients.Length)
+                {
+                    result = Math.Abs(Coefficients[i] - polynom.Coefficients[i]) < DefaultAccuracy;
+                    i++;
+                }
+            }
+
+            return result;
+        }
+
+        public static bool operator == (Polynomial firstPolynom, Polynomial secondPolynom)
+        {
+            return ComparisonOfPolynomials(firstPolynom, secondPolynom);
+        }
+
+        public static bool operator !=(Polynomial firstPolynom, Polynomial secondPolynom)
+        {
+            return !ComparisonOfPolynomials(firstPolynom, secondPolynom);
+        }
+        #endregion public
 
         #region private method
+        private static bool ComparisonOfPolynomials(Polynomial firstPolynom, Polynomial secondPolynom)
+        {
+            bool result = firstPolynom is null && secondPolynom is null;
+            
+            if (!result)
+            {
+                result = (firstPolynom is null) ? secondPolynom.Equals(firstPolynom) : firstPolynom.Equals(secondPolynom);
+            }
+
+            return result;
+        }
         #endregion private method
     }
 }

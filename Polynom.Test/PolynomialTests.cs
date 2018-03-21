@@ -134,5 +134,55 @@
 
             return result.Coefficients;
         }
+
+        [TestCase(new double[] { 1 }, ExpectedResult = "1*x^0")]
+        [TestCase(new double[] { 1, 2, 0, 5 }, ExpectedResult = "1*x^0 + 2*x^1 + 0*x^2 + 5*x^3")]
+        public string ToStringTest(double[] coefficients)
+        {
+            var polynom = new Polynomial(coefficients);
+            return polynom.ToString();
+        }
+
+        [TestCase(new double[] { 8, 16 }, new double[] { 8, 16 }, ExpectedResult = true)]
+        [TestCase(new double[] { 8, 16 }, new double[] { 8, 1 }, ExpectedResult = false)]
+        [TestCase(new double[] { 8, 16 }, new double[] { 8 }, ExpectedResult = false)]
+        public bool EqualsTest(double[] firstCoefficients, double[] secondCoefficients)
+        {
+            var firstPolynim = new Polynomial(firstCoefficients);
+            var secondPolynom = new Polynomial(secondCoefficients);
+
+            return firstPolynim.Equals(secondPolynom);
+        }
+
+        [TestCase]
+        public void EqualsTest_ObjIsNull()
+        {
+            var Coefficients = new double[] { 8, 16 };
+            var firstPolynim = new Polynomial(Coefficients);
+
+            Assert.IsFalse(firstPolynim.Equals(null));
+        }
+
+        [TestCase(new double[] { 8, 16 }, new double[] { 8, 16 }, ExpectedResult = true)]
+        [TestCase(new double[] { 8, 16 }, new double[] { 8, 1 }, ExpectedResult = false)]
+        [TestCase(new double[] { 8, 16 }, new double[] { 8 }, ExpectedResult = false)]
+        public bool OperatorEquality(double[] firstCoefficients, double[] secondCoefficients)
+        {
+            var firstPolynim = new Polynomial(firstCoefficients);
+            var secondPolynom = new Polynomial(secondCoefficients);
+
+            return firstPolynim == secondPolynom;
+        }
+
+        [TestCase(new double[] { 8, 16 }, new double[] { 8, 16 }, ExpectedResult = false)]
+        [TestCase(new double[] { 8, 16 }, new double[] { 8, 1 }, ExpectedResult = true)]
+        [TestCase(new double[] { 8, 16 }, new double[] { 8 }, ExpectedResult = true)]
+        public bool OperatorInequality(double[] firstCoefficients, double[] secondCoefficients)
+        {
+            var firstPolynim = new Polynomial(firstCoefficients);
+            var secondPolynom = new Polynomial(secondCoefficients);
+
+            return firstPolynim != secondPolynom;
+        }
     }
 }
