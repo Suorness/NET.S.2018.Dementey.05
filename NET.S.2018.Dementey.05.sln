@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27428.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polynom", "Polynom\Polynom.csproj", "{EE3085A0-3CCB-4293-972B-DB9E6F9835A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polynom.Test", "PolynomTest\Polynom.Test.csproj", "{53DA61E9-5C2A-4569-8A39-60C31AA2B239}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polynom.Test", "Polynom.Test\Polynom.Test.csproj", "{53DA61E9-5C2A-4569-8A39-60C31AA2B239}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
