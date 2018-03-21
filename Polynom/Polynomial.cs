@@ -189,16 +189,38 @@
             return Multiply(firstPolynom, secondPolynom);
         }
 
+        /// <summary>
+        /// Comparison of the equality of two polynomials.
+        /// </summary>
+        /// <param name="firstPolynom">The first term. <see cref="Polynomial"/></param>
+        /// <param name="secondPolynom">The second term. <see cref="Polynomial"/></param>
+        /// <returns>
+        /// <c>true</c> if the objects are equal, <c>false</c> otherwise.
+        /// </returns>
         public static bool operator ==(Polynomial firstPolynom, Polynomial secondPolynom)
         {
             return ComparisonOfPolynomials(firstPolynom, secondPolynom);
         }
 
+        /// <summary>
+        /// Comparison of the inequality of two polynomials.
+        /// </summary>
+        /// <param name="firstPolynom">The first term. <see cref="Polynomial"/></param>
+        /// <param name="secondPolynom">The second term. <see cref="Polynomial"/></param>
+        /// <returns>
+        /// <c>false</c> if the objects are equal, <c>true</c> otherwise.
+        /// </returns>
         public static bool operator !=(Polynomial firstPolynom, Polynomial secondPolynom)
         {
             return !ComparisonOfPolynomials(firstPolynom, secondPolynom);
         }
 
+        /// <summary>
+        /// Overridden standard hash function
+        /// </summary>
+        /// <returns>
+        /// A hash code for the current object.
+        /// </returns>
         public override int GetHashCode() => ToString().GetHashCode();
 
         public override string ToString()
@@ -217,6 +239,13 @@
             return strBilder.ToString();
         }
 
+        /// <summary>
+        /// Comparison of the equality of two polynomials.
+        /// </summary>
+        /// <param name="obj"> The object to compare with the current object.</param>
+        /// <returns>
+        /// <c>true</c> if the specified object is equal to the current object; otherwise, <c>false</c>.
+        /// </returns>
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(this, obj))
