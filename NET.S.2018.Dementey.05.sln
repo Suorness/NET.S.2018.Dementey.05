@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2005
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polynom", "Polynom\Polynom.csproj", "{EE3085A0-3CCB-4293-972B-DB9E6F9835A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polynom.Test", "PolynomTest\Polynom.Test.csproj", "{53DA61E9-5C2A-4569-8A39-60C31AA2B239}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EE3085A0-3CCB-4293-972B-DB9E6F9835A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE3085A0-3CCB-4293-972B-DB9E6F9835A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE3085A0-3CCB-4293-972B-DB9E6F9835A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE3085A0-3CCB-4293-972B-DB9E6F9835A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53DA61E9-5C2A-4569-8A39-60C31AA2B239}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53DA61E9-5C2A-4569-8A39-60C31AA2B239}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53DA61E9-5C2A-4569-8A39-60C31AA2B239}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53DA61E9-5C2A-4569-8A39-60C31AA2B239}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {70008787-2E30-49CB-A479-050ECF1262CA}
+	EndGlobalSection
+EndGlobal
