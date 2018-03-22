@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polynom.Test", "Polynom.Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortingAlgorithm", "SortingAlgorithm\SortingAlgorithm.csproj", "{F9493A36-DE4C-42DB-B37C-47575925CEA1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortingAlgorithm.Test", "SortingAlgorithm.Test\SortingAlgorithm.Test.csproj", "{52330253-C92A-4234-B898-9EBF32ECF3BA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{F9493A36-DE4C-42DB-B37C-47575925CEA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9493A36-DE4C-42DB-B37C-47575925CEA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9493A36-DE4C-42DB-B37C-47575925CEA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52330253-C92A-4234-B898-9EBF32ECF3BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52330253-C92A-4234-B898-9EBF32ECF3BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52330253-C92A-4234-B898-9EBF32ECF3BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52330253-C92A-4234-B898-9EBF32ECF3BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

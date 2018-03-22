@@ -4,12 +4,16 @@
     using System.Linq;
 
     /// <summary>
-    /// 
+    /// Class representing array sorting
     /// </summary>
     public class ArraySorter
     {
+        #region public
 
-        public Comparison<int[]> IncreaseAmount
+        /// <summary>
+        /// Delegate for sorting by increasing the sum of matrix elements
+        /// </summary>
+        public static Comparison<int[]> IncreaseAmount
         {
             get
             {
@@ -17,7 +21,10 @@
             }
         }
 
-        public Comparison<int[]> DecreaseAmount
+        /// <summary>
+        /// Delegate for sorting by descending the sum of matrix elements
+        /// </summary>
+        public static Comparison<int[]> DecreaseAmount
         {
             get
             {
@@ -25,7 +32,10 @@
             }
         }
 
-        public Comparison<int[]> IncreaseMaxItem
+        /// <summary>
+        /// Delegate for sorting by increasing the maximum elements of the matrix
+        /// </summary>
+        public static Comparison<int[]> IncreaseMaxItem
         {
             get
             {
@@ -33,7 +43,10 @@
             }
         }
 
-        public Comparison<int[]> DecreaseMaxItem
+        /// <summary>
+        /// Delegate for sorting by descending the maximum elements of the matrix
+        /// </summary>
+        public static Comparison<int[]> DecreaseMaxItem
         {
             get
             {
@@ -41,7 +54,10 @@
             }
         }
 
-        public Comparison<int[]> IncreaseMinItem
+        /// <summary>
+        /// Delegate for sorting by increasing the minimum elements of the matrix
+        /// </summary>
+        public static Comparison<int[]> IncreaseMinItem
         {
             get
             {
@@ -49,7 +65,10 @@
             }
         }
 
-        public Comparison<int[]> DecreaseMinItem
+        /// <summary>
+        /// Delegate for sorting by descending the minimum elements of the matrix
+        /// </summary>
+        public static Comparison<int[]> DecreaseMinItem
         {
             get
             {
@@ -57,14 +76,19 @@
             }
         }
 
-
+        /// <summary>
+        /// Sorts the array using the passed comparator.
+        /// </summary>
+        /// <param name="array">The array to be sorted.</param>
+        /// <param name="comparator">The comparator used in sorting.</param>
+        /// <returns></returns>
         public static int[][] BubbleSort(int[][] array, Comparison<int[]> comparator)
         {
             VerifySortInput(array, comparator);
 
-            for (int i = 0; i < array.Length - 1; i++)
+            for (int i = 0; i < array.Length; i++)
             {
-                for (int j = 0; j < array.Length - i; j++)
+                for (int j = 0; j < array.Length - i - 1; j++)
                 {
                     if (comparator(array[j], array[j + 1]) > 0)
                     {
@@ -75,7 +99,9 @@
 
             return array;
         }
+        #endregion public 
 
+        #region private
         private static void VerifySortInput(int[][] array, Comparison<int[]> comparison)
         {
             if (array == null)
@@ -153,6 +179,6 @@
                 return result;
             };
         }
+        #endregion private
     }
 }
-
