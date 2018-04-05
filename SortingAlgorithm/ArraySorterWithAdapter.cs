@@ -6,7 +6,7 @@
     /// <summary>
     /// Class representing array sorting
     /// </summary>
-    public class ArraySorter
+    public class ArraySorterWithAdapter
     {
         #region public
         /// <summary>
@@ -14,8 +14,10 @@
         /// </summary>
         /// <param name="array">The array to be sorted.</param>
         /// <param name="comparator">The comparator used in sorting.</param>
-        /// <returns></returns>
-        public static int[][] BubbleSort(int[][] array, Comparison<int[]> comparator)
+        /// <returns>
+        /// Sorted array.
+        /// </returns>
+        public static int[][] BubbleSort(int[][] array, IComparer<int[]> comparator)
         {
             VerifySortInput(array, comparator);
 
@@ -23,7 +25,7 @@
             {
                 for (int j = 0; j < array.Length - i - 1; j++)
                 {
-                    if (comparator(array[j], array[j + 1]) > 0)
+                    if (comparator.Compare(array[j], array[j + 1]) > 0)
                     {
                         Swap(ref array[j], ref array[j + 1]);
                     }
@@ -33,14 +35,22 @@
             return array;
         }
 
-        public static int[][] BubbleSort(int[][] array, IComparer<int[]> comparer)
+        /// <summary>
+        /// Sorts the array using the passed comparator.
+        /// </summary>
+        /// <param name="array">The array to be sorted.</param>
+        /// <param name="comparator">The comparator used in sorting.</param>
+        /// <returns>
+        /// Sorted array.
+        /// </returns>
+        public static int[][] BubbleSort(int[][] array, Comparison<int[]> comparer)
         {
-            return BubbleSort(array, comparer.Compare);
+            return BubbleSort(array, new AdapterToIComparer(comparer));
         }
         #endregion public 
 
         #region private
-        private static void VerifySortInput(int[][] array, Comparison<int[]> comparison)
+        private static void VerifySortInput(int[][] array, IComparer<int[]> comparison)
         {
             if (array == null)
             {
@@ -52,7 +62,7 @@
                 throw new ArgumentNullException(nameof(comparison));
             }
         }
-
+        
         private static void Swap<T>(ref T x, ref T y)
         {
             var temp = x;
